@@ -1,0 +1,35 @@
+
+    P["<b> Product <br> Management</b>"] -- Products --> Channels["<b> Channels </b> <br> Web - Mobile - Call Centre - Stores"] & OM["<b> Order Orchestration Services </b> <br /> Order Process & State Manager - Stock Orchestrator - Services Orchestrator  - Deviations Manager - Payments Orchestrator - Finance Orchestrator - Communications Orchestrator "]
+    Promising["<b> Promising Services </b> <br/> Availability - Sourcing & Optimisation - Outbound Promising - Return Fulfilment Options "] -- Order/Return/Service Fulfilment Plan --> Channels
+    Promising -- Inventory Availability --> Channels & OM
+    CS["<b> Channel Services </b> <br /> Search - Cart - Checkout - Order History - Order Modifications - Returns Portal"] <-- Sales Orders <br /> Returns --> OMS["<b> Order Manager Services </b> <br/> Sales Order Manager  - Return Manager - Replenisment Manger -  Order Business Rules Engine"]
+    Channels <--> CS
+    OMS -- Orders --> OM
+    OM -- Orders <br /> Workorders <br/> Shipments --> OMS
+    CS -- Reservation Triggers --> Promising
+    OM -- DS Workorders (Booking) --> DM["<b> Logistics Services </b>  <br />  Carriers - Service Providers <br /> Service Order Manager - Routing Optimiser -  Settlements - Label Printer - Capacity Manager "]
+    DM -- Regions <br> Slots <br>  Resource Pools <br> Capacity <br> DS Updates --> Promising
+    WM["<b> Stock Fulfilment </b> <br /> Warehouse Mgt - Stores - Suppliers <br /> Location Inventory Mangement - Receiving - Pick - Pack - Ship - Collect - Stock Movements"] -- Fulfilment Updates <br>Deviations <br> Shipments --> OM
+    OM -- Pick Request <br> Dropship Order --> WM
+    DM -- Label Printing --> WM
+    OM -- Order Invoice <br> --> FIN["<b>Finance</b>"]
+    OM -- Order <br> Workorder <br> Shipment --> DA["<b> Data & Analytics </b>"]
+    OM -- Payment Authorisation <br> Payment Settlement <br> Refunds --> Payments["<b> Payments </b>"]
+    Channels -- Payment Tokenisation <br> Payment Authorisation <br> Refunds --> Payments
+    Promising -- Backorder Fulfilment Plan --> OM
+    Promising -- Optimised sourcing --> OM
+    Inventory["<b> Global Inventory </b>"] -- "On-hand Inventory <br> Future Inventory" --> Promising
+    Customer["Customer"] <-- Customer Profile --> Channels
+    Customer -- Customer Preferences --> OM & Customer_Comm["Customer Communications"]
+    OM -- Order/Shipment & Communication Template Ref --> Customer_Comm
+    Channels -- Comms Triggers --> Customer_Comm
+    DM -- Tracking --> Channels
+    Locations["Locations"] -- Warehouses & Stores --> OM
+    Locations -- Stores --> Channels
+    User["User Mgt"] -- Users <br> User Authentication --> Channels & OM
+    Pricing["Pricing"] -- Pricing <br/> Promotions--> Channels & OM
+    DM -- Service Pricing --> Channels
+    WM -- Location Inventory --> Inventory
+    Planning -- "Replenishment Plan" --> OMS & Inventory
+    OM -- ASN --> Inventory
+    Tax -- Tax --> CS & OM

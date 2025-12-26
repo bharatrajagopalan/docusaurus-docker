@@ -1,0 +1,129 @@
+
+{
+  "skipTerminateQuickPick": true,
+  "skipSwitchToOutput": false,
+  "skipErrorMessage": true,
+  "commands": [
+      {
+          "text": "$(debug-configure) Init",
+          "tooltip": "Initialise docusaurus",
+          "commandType": "exec",
+          "command": "scripts/init.sh",
+          "alignment": "left",
+          "skipTerminateQuickPick": false,
+          "priority": 1,
+          "skipErrorMessage": false
+      },
+      {
+          "text": "$(play) Start",
+          "tooltip": "Start Dev Server",
+          "commandType": "exec",
+          "command": "scripts/start.sh",
+          "alignment": "left",
+          "skipTerminateQuickPick": false,
+          "priority": 1,
+          "skipErrorMessage": false
+      },
+      {
+        "text": "$(stop) Stop",
+        "tooltip": "Build Production & Serve",
+        "commandType": "exec",
+        "command": "ps ax | grep \"npm run start\" | grep -v grep | awk '{print \"kill \" $1}' | sh",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(run-all) Serve",
+        "tooltip": "Build Production & Serve",
+        "commandType": "exec",
+        "command": "scripts/serve.sh",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(x) Stop Serve",
+        "tooltip": "Build Production & Serve",
+        "commandType": "exec",
+        "command": "ps ax | grep \"npm run serve\" | grep -v grep | awk '{print \"kill \" $1}' | sh",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(repo-push) Deploy",
+        "tooltip": "Deploy",
+        "commandType": "exec",
+        "command": "scripts/deploy.sh",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(file-symlink-file)PDF",
+        "tooltip": "Export to PDF",
+        "commandType": "exec",
+        "command": "scripts/pdf.sh",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(package) Build",
+        "tooltip": "Build Container - run once and then on significant changes to core mkdocs",
+        "commandType": "exec",
+        "command": "PUID=\"$(id -u)\" PGID=\"$(id -g)\" USER=\"$(whoami)\" docker-compose build && echo \"\n--------\nFINISHED\n--------\n\"",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+          "text": "$(play)$(package) Start",
+          "tooltip": "Start Dev Server",
+          "commandType": "exec",
+          "command": "PUID=\"$(id -u)\" PGID=\"$(id -g)\" USER=\"$(whoami)\" docker-compose up -d && echo ' \nNOTE: To View Logs \n 1)  Select \"Containers\" from left sidebar \n 2) Select docusaurus container, right click and select \"View Logs\"' && echo \"\n--------\nFINISHED\n--------\n\"",
+        "alignment": "left",
+          "skipTerminateQuickPick": false,
+          "priority": 1,
+          "skipErrorMessage": false
+      },
+      {
+        "text": "$(stop)$(package) Stop",
+        "tooltip": "Stop ",
+        "commandType": "exec",
+        "command": "PUID=\"$(id -u)\" PGID=\"$(id -g)\" USER=\"$(whoami)\" docker-compose down && echo ' \nNOTE: To View Logs \n 1)  Select \"Containers\" from left sidebar \n 2) Select docusaurus container, right click and select \"View Logs\"' && echo \"\n--------\nFINISHED\n--------\n\"",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(run-all)$(package)  Serve",
+        "tooltip": "Build Production & Serve",
+        "commandType": "exec",
+        "command": "echo 'Ensure that docusaurus container is running with the Start command before running this' && docker exec -u $(whoami) docusaurus /bin/bash -c 'scripts/serve.sh 2>&1'",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(repo-push)$(package) Deploy",
+        "tooltip": "Deploy",
+        "commandType": "exec",
+        "command": "echo 'Ensure that docusaurus container is running with the Start command before running this' && docker exec docusaurus /bin/bash -c 'scripts/deploy.sh 2>&1'",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      },
+      {
+        "text": "$(file-symlink-file)$(package)PDF",
+        "tooltip": "Export to PDF",
+        "commandType": "exec",
+        "command": "scripts/pdf-docker.sh",
+        "alignment": "left",
+        "skipTerminateQuickPick": false,
+        "priority": 1
+      }
+    
+  ]
+}

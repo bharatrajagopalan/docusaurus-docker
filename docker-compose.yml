@@ -1,0 +1,52 @@
+services:
+    docusaurus:
+      image: docusaurus_docker
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          - PUID=${PUID}
+          - PGID=${PGID}
+          - AUTO_UPDATE=${AUTO_UPDATE}
+          - TEMPLATE=${TEMPLATE}
+          - USER=${USER}
+      entrypoint: ['/bin/bash']
+      working_dir: /home/${USER}/docusaurus
+      command: ['-c' , 'npm run start -- --host 0.0.0.0 --poll 1000']
+      container_name: docusaurus
+      ports:
+        - 127.0.0.1:3000:3000
+        - 127.0.0.1:3001:3001
+      volumes:
+        - ./blog:/home/${USER}/docusaurus/blog
+        - ./docs:/home/${USER}/docusaurus/docs
+        - ./static:/home/${USER}/docusaurus/static
+        - ./src:/home/${USER}/docusaurus/src
+        - ./docusaurus.config.ts:/home/${USER}/docusaurus/docusaurus.config.ts
+        - ./sidebars.ts:/home/${USER}/docusaurus/sidebars.ts
+        - ./scripts:/home/${USER}/docusaurus/scripts
+        # ensure container  host user certs are available
+        # to enable git deploy
+        - $HOME/.ssh/id_rsa:/home/${USER}/.ssh/id_rsa
+        - $HOME/.ssh/id_rsa.pub:/home/${USER}/.ssh/id_rsa.pub
+        - $HOME/.ssh/known_hosts:/home/${USER}/.ssh/known_hosts
+      environment:
+        # Read user name and email from .env file for git deployment 
+        - USE_SSH=${USE_SSH}
+        - GIT_USER=${GIT_USER}
+        - GIT_PASS=${GIT_PASS}
+        - CURRENT_BRANCH=${CURRENT_BRANCH}
+        - GIT_USER_NAME=${GIT_USER_NAME}
+        - GIT_USER_EMAIL=${GIT_USER_EMAIL}
+        - GITHUB_HOST=${GITHUB_HOST}
+        - GITHUB_PORT=${GITHUB_PORT}
+      stdin_open: true
+      tty: true
+      privileged: true
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      # ensure container is running as host user
+      # to enable git deploy
+      user: ${PUID}:${PGID}
+
+  

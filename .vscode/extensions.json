@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "clover.md-table-editor",
+        "unifiedjs.vscode-mdx",
+        "hediet.vscode-drawio",
+        "csholmq.excel-to-markdown-table",
+        "yzhang.markdown-all-in-one",
+        "yzane.markdown-pdf",
+        "mdickin.markdown-shortcuts",
+        "goessner.mdmath",
+        "davidanson.vscode-markdownlint",
+        "ms-azuretools.vscode-docker",
+        "gsppvo.vscode-commandbar",
+        "eamodio.gitlens",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "tomoki1207.pdf",
+        "shd101wyy.markdown-preview-enhanced",
+        "IBM.output-colorizer",
+        "ms-edgedevtools.vscode-edge-devtools"
+    ]
+}

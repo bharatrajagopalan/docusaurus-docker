@@ -1,0 +1,11 @@
+{
+    //"files.autoSave": "afterDelay",
+    "workbench.statusBar.visible": true,
+    "output.smartScroll.enabled": true,
+    //"workbench.colorCustomizations": {
+    //    "statusBar.background": "#ffffff",
+
+    "vscode-edge-devtools.headless": true,
+    "vscode-edge-devtools.defaultUrl": "http://localhost:3000"
+    
+}
