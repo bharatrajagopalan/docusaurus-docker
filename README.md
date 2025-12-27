@@ -6,13 +6,14 @@ This is meant to be operated in Visual Studio Code; the source code explicitly c
 
 ## Installation
 
-when running directly using node
+
+when running directly using node, use the `Init` command on the status bar of vscode which should run
 
 ```bash
 npm install
 ```
 
-When using docker, this will generate a non-root container using your local user and group.
+When using docker,use the `Build` command this will generate a non-root container using your local user and group.
 
 ```bash
 PUID="$(id -u)" PGID="$(id -g)" USER="$(whoami)" docker-compose build
@@ -23,13 +24,13 @@ PUID="$(id -u)" PGID="$(id -g)" USER="$(whoami)" docker-compose build
 
 Run a local dev server (this will run on port 3000)
 
-directly using node `scripts/start.sh` is provided
+directly using node `scripts/start.sh` is provided and triggered by `Start` command on the status bar.
 
 ```bash
 npm run start -- --host 0.0.0.0 --poll 1000
 ```
 
-using docker
+if using docker, `Start` command with the package icon on the status bar can be used.
 
 ```bash
 PUID="$(id -u)" PGID="$(id -g)" USER="$(whoami)" docker-compose up
@@ -41,7 +42,7 @@ This command starts a local development server and opens up a browser window. Mo
 
 Create and serve a production ready build in port 3001
 
-if using node directly then use `scripts/serve.sh` which contains the below.
+if using node directly then use `scripts/serve.sh` (or via the `Serve` icon on the statusbar) which contains the below.
 
 ```bash
 npm ci
@@ -49,7 +50,7 @@ npm run build
 npm run serve -- --host 0.0.0.0 --port 3001 --no-open
 ```
 
-With docker, ensure that the container is up using the `docker-compose up` command above and then
+With docker, ensure that the container is up using the `docker-compose up` command above annd then the `Serve` command with the package icon on the status bar can be used which will trigger
 
 ```bash
 docker exec -u $(whoami) docusaurus /bin/bash -c 'scripts/serve.sh 2>&1'
@@ -59,7 +60,7 @@ This command generates static content into the `build` directory and can be serv
 
 ## Export to PDF
 
-PDF export uses the `docs-to-pdf` plugin.`scripts/pdf.sh` is provided with some pre-configured values that you can edit - contents are as below
+PDF export uses the `docs-to-pdf` plugin.`scripts/pdf.sh` is provided with some pre-configured values that you can edit - contents are as below and are triggered using the `PDF` commands in the status bar
 
 ```bash
 npx docs-to-pdf docusaurus \
@@ -73,7 +74,7 @@ npx docs-to-pdf docusaurus \
      --version=3
 ```
 
-Using docker , the same `scripts/pdf.sh` is executed from within the container, hence the same file can be edited.
+Using docker , the same `scripts/pdf.sh` is executed from within the container when using `PDF` with the package icon on the status bar, hence the same file can is reused.
 
 ```bash
 docker run --network="host" \
