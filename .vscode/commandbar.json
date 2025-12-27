@@ -51,7 +51,8 @@
         "skipTerminateQuickPick": false,
         "priority": 1
       },
-      {
+      //Uncomment the below deploy option if you are not using github actions to deploy to github pages
+      /*{
         "text": "$(repo-push) Deploy",
         "tooltip": "Deploy",
         "commandType": "exec",
@@ -59,7 +60,7 @@
         "alignment": "left",
         "skipTerminateQuickPick": false,
         "priority": 1
-      },
+      },*/
       {
         "text": "$(file-symlink-file)PDF",
         "tooltip": "Export to PDF",
@@ -106,7 +107,8 @@
         "skipTerminateQuickPick": false,
         "priority": 1
       },
-      {
+      //Uncomment the below deploy option if you are not using github actions to deploy to github pages
+      /*{
         "text": "$(repo-push)$(package) Deploy",
         "tooltip": "Deploy",
         "commandType": "exec",
@@ -114,7 +116,7 @@
         "alignment": "left",
         "skipTerminateQuickPick": false,
         "priority": 1
-      },
+      },*/
       {
         "text": "$(file-symlink-file)$(package)PDF",
         "tooltip": "Export to PDF",
@@ -124,6 +126,5 @@
         "skipTerminateQuickPick": false,
         "priority": 1
       }
-    
   ]
 }
