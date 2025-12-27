@@ -6,6 +6,6 @@
     //    "statusBar.background": "#ffffff",
 
     "vscode-edge-devtools.headless": true,
-    "vscode-edge-devtools.defaultUrl": "http://localhost:3000"
+    "vscode-edge-devtools.defaultUrl": "http://localhost:3000/docusaurus-docker"
     
 }
